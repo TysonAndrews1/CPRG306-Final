@@ -7,6 +7,8 @@ import tempImage2 from "../../public/assets/haunted_shadows.png";
 import tempImage3 from "../../public/assets/happy_holidays.png";
 
 export default function Page() {
+  const [currentStep, setCurrenntStep] = useState(1);
+
   const [charName, setCharName] = useState("");
   const [charClass, setCharClass] = useState("");
 
@@ -25,6 +27,23 @@ export default function Page() {
   const [charIdeals, setCharIdeals] = useState("");
   const [charBonds, setCharBonds] = useState("");
   const [charFlaws, setCharFlaws] = useState("");
+
+  const dndCharacterDesignData = {
+    name: charName,
+    class: charClass,
+    age: charAge,
+    height: charHeight,
+    weight: charWeight,
+    eyes: charEyes,
+    skin: charSkin,
+    hair: charHair,
+    photo: charPhoto,
+    desc: charDesc,
+    persTraits: charPersTraits,
+    ideals: charIdeals,
+    bonds: charBonds,
+    flaws: charFlaws,
+  };
 
   const handleRandomCharName = () => {
     //this will use a random dnd name api
@@ -85,7 +104,7 @@ export default function Page() {
     const randomIndex = Math.floor(Math.random() * imageList.length);
     setCharPhoto(imageList[randomIndex]);
   };
-  
+
   //save/next page button, this should take all the variables from this page and move on to the next page
   const handleSaveCharacter = () => {
     //save all the variables to the database
@@ -95,6 +114,11 @@ export default function Page() {
   return (
     <main className="flex flex-col items-center bg-slate-400 min-h-screen">
       <h1 className="text-black text-6xl m-2 mt-5 font-bold italic">-- Character Design --</h1>
+      
+      {/* im changing how im setting up the pages, its gonna be component based */}
+      { currentStep === 1 && <Step1 /> }
+
+
       <h2 className="text-black text-1xl italic text-center w-1/4">Begin making the design of your character. Make it truly yours, or randomize!</h2>
       {/* character attributes */}
       <div className="flex flex-row items-stretch">
