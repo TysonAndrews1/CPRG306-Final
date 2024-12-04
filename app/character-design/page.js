@@ -116,7 +116,7 @@ export default function Page() {
       <h1 className="text-black text-6xl m-2 mt-5 font-bold italic">-- Character Design --</h1>
       
       {/* im changing how im setting up the pages, its gonna be component based */}
-      { currentStep === 1 && <Step1 /> }
+
 
 
       <h2 className="text-black text-1xl italic text-center w-1/4">Begin making the design of your character. Make it truly yours, or randomize!</h2>
@@ -248,7 +248,7 @@ export default function Page() {
               <h2 className="font-bold">Description</h2>
               <button
                 className="font-bold italic ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
-                onClick={console.log("Lorum Ispum")}
+                onClick={()=>{console.log("Lorum Ispum")}}
               >L</button>
             </div>
           </div>
@@ -264,7 +264,7 @@ export default function Page() {
                 <h2 className="font-bold">Personality Traits</h2>
                 <button
                   className="font-bold italic ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
-                  onClick={console.log("Lorum Ispum")}
+                  onClick={()=>{console.log("Lorum Ispum")}}
                 >L</button>
               </div>
             </div>
@@ -275,7 +275,7 @@ export default function Page() {
                 <h2 className="font-bold">Ideals</h2>
                 <button
                   className="font-bold italic ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
-                  onClick={console.log("Lorum Ispum")}
+                  onClick={()=>{console.log("Lorum Ispum")}}
                 >L</button>
               </div>
             </div>
@@ -289,7 +289,7 @@ export default function Page() {
                 <h2 className="font-bold">Bonds</h2>
                 <button
                   className="font-bold italic ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
-                  onClick={console.log("Lorum Ispum")}
+                  onClick={()=>{console.log("Lorum Ispum")}}
                 >L</button>
               </div>
             </div>
@@ -300,7 +300,7 @@ export default function Page() {
                 <h2 className="font-bold">Flaws</h2>
                 <button
                   className="font-bold italic ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
-                  onClick={console.log("Lorum Ispum")}
+                  onClick={()=>{console.log("Lorum Ispum")}}
                 >L</button>
               </div>
             </div>

@@ -2,14 +2,20 @@
 
 import { useState, useEffect } from "react";
 import SelectApi from "./selectComponent";
+import ClassBased from "./ClassBasedOptions";
 
 
 export default function Page() {
   return (
     <main>
+            <div>
       <SelectApi path={"races"}/>
+</div><div>
       <SelectApi path={"classes"}/>
-      {/* <SelectApi path={"classes/barbarian"}/> */}
+      </div>
+      <div>
+        <ClassBased DndClass={"barbarian"}/>
+      </div>
     </main>
   );
 }

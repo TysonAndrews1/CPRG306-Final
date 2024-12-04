@@ -20,9 +20,6 @@ export default function SelectApi({ path }) {
       try {
         const data = await fetchAPIData(path);
         setOptions(data); // Update the state with the fetched data
-        if (data.length > 0) {
-          setSelectedOption(data[0].name || ""); // Set the first item as selected by default
-        }
       } catch (error) {
         console.error("Error fetching data:", error);
       }
