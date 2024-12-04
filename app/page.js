@@ -6,8 +6,7 @@ export default function Page() {
     <main>
       <h1>Dungeon Weaver</h1>
       <p>text</p>
-      <Link href="character-design" className="hover:text-amber-400">Design a Character</Link>
-      <Link href={"/tyson-test"}>Testing</Link>
+      <Link href="character-data" className="hover:text-amber-400">Design a Character</Link>
     </main>
   );
 }
