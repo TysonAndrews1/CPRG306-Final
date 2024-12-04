@@ -15,6 +15,10 @@ export default function ClassBased({ DndClass }) {
   const [options, setOptions] = useState([]);
   const [Level, setLevel] = useState(""); // The level selected by the user
   const [HitDice, setHitDice] = useState(""); // The hit dice calculated based on the level and class
+
+// Stat Consts 
+    const [Str, setStr] = useState("")
+
   const LevelCap = 20;
 
   let LevelElements = [];
