@@ -2,11 +2,12 @@
 import { useState } from "react";
 import Link from "next/link";
 import { BiShuffle } from "react-icons/bi";
-import tempImage1 from "../../public/assets/idek_sunset.png";
-import tempImage2 from "../../public/assets/haunted_shadows.png";
-import tempImage3 from "../../public/assets/happy_holidays.png";
+// import tempImage1 from "/assets/happy_holidays.png";
+// import tempImage2 from "/assets/haunted_shadows.png";
+// import tempImage3 from "/assets/happy_holidays.png";
 
 export default function Page() {
+
   const [currentStep, setCurrenntStep] = useState(1);
 
   const [charName, setCharName] = useState("");
@@ -20,7 +21,8 @@ export default function Page() {
   const [charSkin, setCharSkin] = useState("");
   const [charHair, setCharHair] = useState("");
 
-  const [charPhoto, setCharPhoto] = useState(tempImage1);
+  const imagePaths = ["/assets/happy_holidays.png","/assets/haunted_shadows.png","/assets/idek_sunset.png"]
+  const [charPhoto, setCharPhoto] = useState(imagePaths[0]);
   const [charDesc, setCharDesc] = useState("");
 
   const [charPersTraits, setCharPersTraits] = useState("");
@@ -99,10 +101,13 @@ export default function Page() {
     setCharHair(hairColours[Math.floor(Math.random() * hairColours.length)]);
   }
 
+  //image handling test
+
   const handleRandomCharPhoto = () => {
-    const imageList = [tempImage1, tempImage2, tempImage3];
-    const randomIndex = Math.floor(Math.random() * imageList.length);
-    setCharPhoto(imageList[randomIndex]);
+    const randomIndex = Math.floor(Math.random() * imagePaths.length);
+    console.log(randomIndex);
+    
+    setCharPhoto(imagePaths[randomIndex]);
   };
 
   //what this will do is send over the character data to the next page, aka the step 2 component named "character-data"
@@ -233,7 +238,7 @@ export default function Page() {
         <div className="flex flex-col justify-between p-3 m-1 bg-slate-600 rounded">
           {/* photo */}
           <div className="flex flex-col items-stretch mb-1">
-            <img className="p-1 rounded" src={charPhoto} alt={charClass + " Photo"} />
+            <img className="p-1 rounded w-10" src={charPhoto} alt={charClass + " Photo"} />
             <div className="flex flex-row items-center justify-between pt-1 w-full">
               <h2 className="font-bold">{charClass}</h2>
             </div>
@@ -245,7 +250,7 @@ export default function Page() {
               <h2 className="font-bold">Description</h2>
               <button
                 className="font-bold italic ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
-                onClick={console.log("Lorum Ispum")}
+                onClick={()=>{console.log("Lorum Ispum")}}
               >L</button>
             </div>
           </div>
@@ -261,7 +266,7 @@ export default function Page() {
                 <h2 className="font-bold">Personality Traits</h2>
                 <button
                   className="font-bold italic ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
-                  onClick={console.log("Lorum Ispum")}
+                  onClick={()=>{console.log("Lorum Ispum")}}
                 >L</button>
               </div>
             </div>
@@ -272,7 +277,7 @@ export default function Page() {
                 <h2 className="font-bold">Ideals</h2>
                 <button
                   className="font-bold italic ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
-                  onClick={console.log("Lorum Ispum")}
+                  onClick={()=>{console.log("Lorum Ispum")}}
                 >L</button>
               </div>
             </div>
@@ -286,7 +291,7 @@ export default function Page() {
                 <h2 className="font-bold">Bonds</h2>
                 <button
                   className="font-bold italic ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
-                  onClick={console.log("Lorum Ispum")}
+                  onClick={()=>{console.log("Lorum Ispum")}}
                 >L</button>
               </div>
             </div>
@@ -297,7 +302,7 @@ export default function Page() {
                 <h2 className="font-bold">Flaws</h2>
                 <button
                   className="font-bold italic ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
-                  onClick={console.log("Lorum Ispum")}
+                  onClick={()=>{console.log("Lorum Ispum")}}
                 >L</button>
               </div>
             </div>
