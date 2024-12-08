@@ -2,20 +2,13 @@
 import { useState } from "react";
 import Link from "next/link";
 import { BiShuffle } from "react-icons/bi";
-// import tempImage1 from "/assets/happy_holidays.png";
-// import tempImage2 from "/assets/haunted_shadows.png";
-// import tempImage3 from "/assets/happy_holidays.png";
+import tempImage1 from "../../public/assets/happy_holidays.png";
 
 import CharacterAttributes from "./character-attributes";
 import CharacterSheet from "./character-sheet";
 
 export default function Page() {
-<<<<<<< Updated upstream
-
-  const [currentStep, setCurrenntStep] = useState(1);
-=======
   const [currentStep, setCurrentStep] = useState(1);
->>>>>>> Stashed changes
 
   const [charName, setCharName] = useState("");
   const [charClass, setCharClass] = useState("");
@@ -28,14 +21,9 @@ export default function Page() {
   const [charSkin, setCharSkin] = useState("");
   const [charHair, setCharHair] = useState("");
 
-<<<<<<< Updated upstream
-  const imagePaths = ["/assets/happy_holidays.png","/assets/haunted_shadows.png","/assets/idek_sunset.png"]
-  const [charPhoto, setCharPhoto] = useState(imagePaths[0]);
-=======
   const [charRace, setCharRace] = useState("");
 
   const [charPhoto, setCharPhoto] = useState(tempImage1);
->>>>>>> Stashed changes
   const [charDesc, setCharDesc] = useState("");
 
   const [charPersTraits, setCharPersTraits] = useState("");
@@ -124,14 +112,13 @@ export default function Page() {
     stealthProf: false,
     survival: 0,
     survivalProf: false,
-    passiveWisdom: 0,
     //combat values
     armorClass: 0,
     initiative: 0,
     speed: 0,
     hitPoints: 0,
     //other values
-    inspiration: 0,
+    passiveWisdom: 0,
     proficiencyBonus: 0,
   };
 
@@ -190,8 +177,14 @@ export default function Page() {
   }
 
   //image handling test
+  const imagePaths = [
+    "../../public/assets/happy_holidays.png",
+    "../../public/assets/happy_holidays.png",
+    "../../public/assets/happy_holidays.png",
+  ];
 
   const handleRandomCharPhoto = () => {
+
     const randomIndex = Math.floor(Math.random() * imagePaths.length);
     console.log(randomIndex);
     
@@ -244,9 +237,9 @@ export default function Page() {
             <div className="flex flex-col items-stretch mb-1">
               <input className="text-black p-1 rounded border-4 border-stone-400" type="text" placeholder="e.g. Idek the Confused" value={charName} onChange={(e) => setCharName(e.target.value)}/>
               <div className="flex flex-row items-center justify-between pt-1 w-full">
-              <h2 className="font-bold">Character Name</h2>
+              <h2 className="font-bold text-white">Character Name</h2>
               <BiShuffle
-                className="ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
+                className="ml-2 text-white bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
                 onClick={handleRandomCharName}
               />
               </div>
@@ -268,9 +261,9 @@ export default function Page() {
                 <option value="Wizard">Wizard</option>
               </select>
               <div className="flex flex-row items-center justify-between pt-1 w-full">
-              <h2 className="font-bold">Class</h2>
+              <h2 className="font-bold text-white">Class</h2>
               <BiShuffle
-                className="ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
+                className="ml-2 text-white bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
                 onClick={handleRandomCharClass}
               />
               </div>
@@ -283,9 +276,9 @@ export default function Page() {
               <div className="flex flex-col mb-1 mr-1">
                 <input className="text-black p-1 rounded border-4 border-stone-400" type="number" placeholder="Human Year" value={charAge} onChange={(e) => setCharAge(e.target.value)}/>
                 <div className="flex flex-row items-center justify-between pt-1 w-full">
-                  <h2 className="font-bold">Age</h2>
+                  <h2 className="font-bold text-white">Age</h2>
                   <BiShuffle
-                    className="ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
+                    className="ml-2 text-white bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
                     onClick={handleRandomCharAge}
                   />
                 </div>
@@ -293,9 +286,9 @@ export default function Page() {
               <div className="flex flex-col mb-1 mx-1">
                 <input className="text-black p-1 rounded border-4 border-stone-400" type="number" id="char_height" placeholder="Feet" value={charHeight} onChange={(e) => setCharHeight(e.target.value)}/>
                 <div className="flex flex-row items-center justify-between pt-1 w-full">
-                  <h2 className="font-bold">Height (ft)</h2>
+                  <h2 className="font-bold text-white">Height (ft)</h2>
                   <BiShuffle
-                    className="ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
+                    className="ml-2 text-white bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
                     onClick={handleRandomCharHeight}
                   />
                   </div>
@@ -303,9 +296,9 @@ export default function Page() {
               <div className="flex flex-col mb-1 ml-1">
                 <input className="text-black p-1 rounded border-4 border-stone-400" type="number" id="char_weight" placeholder="Pounds" value={charWeight} onChange={(e) => setCharWeight(e.target.value)}/>
                 <div className="flex flex-row items-center justify-between pt-1 w-full">
-                  <h2 className="font-bold">Weight (lbs)</h2>
+                  <h2 className="font-bold  text-white">Weight (lbs)</h2>
                   <BiShuffle
-                    className="ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
+                    className="ml-2 text-white bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
                     onClick={handleRandomCharWeight}
                   />
                 </div>
@@ -316,9 +309,9 @@ export default function Page() {
               <div className="flex flex-col mt-1 mr-1">
                 <input className="text-black p-1 rounded border-4 border-stone-400" type="text" id="charEyes" placeholder="e.g. Blue" value={charEyes} onChange={(e) => setCharEyes(e.target.value)}/>
                 <div className="flex flex-row items-center justify-between pt-1 w-full">
-                  <h2 className="font-bold">Eyes</h2>
+                  <h2 className="font-bold text-white">Eyes</h2>
                   <BiShuffle
-                    className="ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
+                    className="ml-2 text-white bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
                     onClick={handleRandomCharEyes}
                   />
                 </div>
@@ -326,9 +319,9 @@ export default function Page() {
               <div className="flex flex-col mt-1 mx-1">
                 <input className="text-black p-1 rounded border-4 border-stone-400" type="text" id="charSkin" placeholder="e.g. White" value={charSkin} onChange={(e) => setCharSkin(e.target.value)}/>
                 <div className="flex flex-row items-center justify-between pt-1 w-full">
-                  <h2 className="font-bold">Skin</h2>
+                  <h2 className="font-bold text-white">Skin</h2>
                   <BiShuffle
-                    className="ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
+                    className="ml-2 text-white bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
                     onClick={handleRandomCharSkin}
                   />
                 </div>
@@ -336,9 +329,9 @@ export default function Page() {
               <div className="flex flex-col mt-1 ml-1">
                 <input className="text-black p-1 rounded border-4 border-stone-400" type="text" id="charHair" placeholder="e.g. Blonde" value={charHair} onChange={(e) => setCharHair(e.target.value)}/>
                 <div className="flex flex-row items-center justify-between pt-1 w-full">
-                  <h2 className="font-bold">Hair</h2>
+                  <h2 className="font-bold text-white">Hair</h2>
                   <BiShuffle
-                    className="ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
+                    className="ml-2 text-white bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
                     onClick={handleRandomCharHair}
                   />
                 </div>
@@ -346,27 +339,15 @@ export default function Page() {
             </div>
           </div>
         </div>
-<<<<<<< Updated upstream
-      </div>
-      {/* character appearance */}
-      <div className="flex flex-row items-stretch">
-        {/* photo and desc */}
-        <div className="flex flex-col justify-between p-3 m-1 bg-slate-600 rounded">
-          {/* photo */}
-          <div className="flex flex-col items-stretch mb-1">
-            <img className="p-1 rounded w-10" src={charPhoto} alt={charClass + " Photo"} />
-            <div className="flex flex-row items-center justify-between pt-1 w-full">
-              <h2 className="font-bold">{charClass}</h2>
-=======
         {/* character appearance */}
         <div className="flex flex-row items-stretch">
           {/* photo and race */}
           <div className="flex flex-col justify-between p-3 m-1 bg-slate-600 rounded">
             {/* photo */}
             <div className="flex flex-col items-stretch mb-1">
-              <img className="p-1 rounded" src={charPhoto} alt={charClass + " Photo"} />
+              <img className="p-1 rounded text-white" src={charPhoto} alt={charRace + " Photo"} />
               <div className="flex flex-row items-center justify-between pt-1 w-full">
-                <h2 className="font-bold">{charClass}</h2>
+                <h2 className="font-bold text-white">{charRace}</h2>
               </div>
             </div>
             {/* desc */}
@@ -397,22 +378,14 @@ export default function Page() {
                 <option value="Kobold">Kobold</option>
                 <option value="Aarakocra">Aarakocra</option>
               </select>              
-              <h2 className="font-bold">Race</h2>
->>>>>>> Stashed changes
+              <h2 className="font-bold text-white">Race</h2>
             </div>
           </div>
           <div className="flex flex-col justify-between p-3 m-1 bg-slate-600 rounded">
             {/* desc */}
             <div className="flex flex-col items-stretch mb-1">
               <textarea className="text-black p-1 rounded border-4 border-stone-400" type="text" placeholder="Description" value={charDesc} onChange={(e) => setCharDesc(e.target.value)}/>
-              <h2 className="font-bold">Description</h2>
-<<<<<<< Updated upstream
-              <button
-                className="font-bold italic ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
-                onClick={()=>{console.log("Lorum Ispum")}}
-              >L</button>
-=======
->>>>>>> Stashed changes
+              <h2 className="font-bold text-white">Description</h2>
             </div>
           </div>
           {/* personality traits, ideals, bonds, flaws */}
@@ -422,26 +395,12 @@ export default function Page() {
               {/* personality traits */}
               <div className="flex flex-col mb-1 mr-1">
                 <textarea className="text-black p-1 rounded border-4 border-stone-400" placeholder="e.g. Curious, Loyal, etc." value={charPersTraits} onChange={(e) => setCharPersTraits(e.target.value)}/>
-                <h2 className="font-bold">Personality Traits</h2>
-<<<<<<< Updated upstream
-                <button
-                  className="font-bold italic ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
-                  onClick={()=>{console.log("Lorum Ispum")}}
-                >L</button>
-=======
->>>>>>> Stashed changes
+                <h2 className="font-bold text-white">Personality Traits</h2>
               </div>
               {/* ideals */}
               <div className="flex flex-col mb-1 mx-1">
                 <textarea className="text-black p-1 rounded border-4 border-stone-400" placeholder="e.g. Freedom, Knowledge, etc." value={charIdeals} onChange={(e) => setCharIdeals(e.target.value)}/>
-                <h2 className="font-bold">Ideals</h2>
-<<<<<<< Updated upstream
-                <button
-                  className="font-bold italic ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
-                  onClick={()=>{console.log("Lorum Ispum")}}
-                >L</button>
-=======
->>>>>>> Stashed changes
+                <h2 className="font-bold text-white">Ideals</h2>
               </div>
             </div>
             {/* bonds, flaws */}
@@ -449,26 +408,12 @@ export default function Page() {
               {/* bonds */}
               <div className="flex flex-col mt-1 mr-1">
                 <textarea className="text-black p-1 rounded border-4 border-stone-400" placeholder="e.g. Family Legacy, Artifact of Significance, etc." value={charBonds} onChange={(e) => setCharBonds(e.target.value)}/>
-                <h2 className="font-bold">Bonds</h2>
-<<<<<<< Updated upstream
-                <button
-                  className="font-bold italic ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
-                  onClick={()=>{console.log("Lorum Ispum")}}
-                >L</button>
-=======
->>>>>>> Stashed changes
+                <h2 className="font-bold text-white">Bonds</h2>
               </div>
               {/* flaws */}
               <div className="flex flex-col mt-1 mx-1">
                 <textarea className="text-black p-1 rounded border-4 border-stone-400" placeholder="e.g. Impulsive, Overconfident, etc." value={charFlaws} onChange={(e) => setCharFlaws(e.target.value)}/>
-                <h2 className="font-bold">Flaws</h2>
-<<<<<<< Updated upstream
-                <button
-                  className="font-bold italic ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
-                  onClick={()=>{console.log("Lorum Ispum")}}
-                >L</button>
-=======
->>>>>>> Stashed changes
+                <h2 className="font-bold text-white">Flaws</h2>
               </div>
             </div>
           </div>
@@ -477,7 +422,7 @@ export default function Page() {
         <br/>
         <button
           href="../character-data"
-          className="flex items-center justify-center bg-blue-500 h-16 w-32 text-3xl font-bold rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
+          className="flex items-center justify-center text-white bg-blue-500 h-16 w-32 text-3xl font-bold rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
           onClick={handleNextStep}>
             Next
         </button>
@@ -490,12 +435,12 @@ export default function Page() {
         <CharacterAttributes dndCharacterValues={dndCharacterValues} />
         <div className="flex flex-row items-center">
           <button
-            className="flex items-center justify-center m-3 bg-blue-500 h-16 w-48 text-3xl font-bold rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
+            className="flex items-center justify-center m-3 text-white bg-blue-500 h-16 w-48 text-3xl font-bold rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
             onClick={handlePrevStep}>
               Previous
           </button>
           <button
-            className="flex items-center justify-center m-3 bg-blue-500 h-16 w-32 text-3xl font-bold rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
+            className="flex items-center justify-center m-3 text-white bg-blue-500 h-16 w-32 text-3xl font-bold rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
             onClick={handleNextStep}>
               Next
           </button>
@@ -509,14 +454,14 @@ export default function Page() {
         <CharacterSheet dndCharacterValues={dndCharacterValues} />
         <div className="flex flex-row items-center">
           <button
-            className="flex items-center justify-center m-3 bg-blue-500 h-16 w-48 text-3xl font-bold rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
+            className="flex items-center justify-center m-3 text-white bg-blue-500 h-16 w-48 text-3xl font-bold rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
             onClick={handlePrevStep}>
               Previous
           </button>
           <button
-            className="flex items-center justify-center m-3 bg-blue-500 h-16 w-32 text-3xl font-bold rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
+            className="flex items-center justify-center m-3 text-white bg-blue-500 h-16 w-32 text-3xl font-bold rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
             onClick={handleNextStep}>
-              Next
+              Save
           </button>
         </div>
       </main>
