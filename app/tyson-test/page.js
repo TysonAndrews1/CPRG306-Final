@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import SelectApi from "./selectComponent";
 import ClassBased from "./ClassBasedOptions";
-
+import Stats from './Stats'
 
 export default function Page() {
   return (
@@ -15,6 +15,7 @@ export default function Page() {
       </div>
       <div>
         <ClassBased DndClass={"barbarian"}/>
+        <Stats DndRace={"human"}/>
       </div>
     </main>
   );

@@ -10,14 +10,14 @@ async function fetchAPIData(DndClass) {
   return classData.results || classData; // API returns results in an array of objects, or the whole data in some cases
 }
 
+
+
 export default function ClassBased({ DndClass }) {
   const [ClassData, setClassData] = useState(null); // State to store class data
   const [options, setOptions] = useState([]);
   const [Level, setLevel] = useState(""); // The level selected by the user
   const [HitDice, setHitDice] = useState(""); // The hit dice calculated based on the level and class
-
-// Stat Consts 
-    const [Str, setStr] = useState("")
+  const [profBonus, setProfBonus] =useState("")
 
   const LevelCap = 20;
 
@@ -51,6 +51,7 @@ export default function ClassBased({ DndClass }) {
   useEffect(() => {
     if (Level && ClassData) {
       HandleHitDice();
+      HandleProfBonus(Level)
     }
   }, [Level, ClassData]); // Runs when either Level or ClassData changes
 
@@ -62,6 +63,10 @@ export default function ClassBased({ DndClass }) {
     } else {
       setHitDice("N/A");
     }
+  }
+  function HandleProfBonus(Level){
+    const ProfTable =[0,2,3,4,5,6];
+    setProfBonus(ProfTable[Math.ceil(Level/4)])
   }
 
   // Handle the selection change
@@ -75,7 +80,7 @@ export default function ClassBased({ DndClass }) {
       <select value={Level} onChange={handleLevelChange}>
         {/* Placeholder option */}
         <option value="" disabled>
-          -- Select a {DndClass} --
+          -- Select a Level --
         </option>
 
         {/* Map through the options */}
@@ -84,6 +89,7 @@ export default function ClassBased({ DndClass }) {
 
       <p>You selected level: {Level}</p>
       <p>Hit die: {HitDice}</p>
+      <p>Prof Bonus : +{profBonus}</p>
     </div>
   );
 }
