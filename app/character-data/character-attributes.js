@@ -1,9 +1,4 @@
 'use client';
-import { useState } from "react";
-import { BiShuffle } from "react-icons/bi";
-import tempImage1 from "../../public/assets/idek_sunset.png";
-import tempImage2 from "../../public/assets/haunted_shadows.png";
-import tempImage3 from "../../public/assets/happy_holidays.png";
 
 export default function CharacterData() {
 
@@ -13,9 +8,9 @@ export default function CharacterData() {
       <h2 className="text-black text-1xl italic text-center w-1/4">Here, you'll start filling in all of the sections to give your character "functionality".</h2>
 
       <div className="flex flex-row items-stretch">
-        <p>
+        {/* <p>
           ¯\_(ツ)_/¯
-        </p>
+        </p> */}
       </div>
     </main>
   );
