@@ -6,9 +6,16 @@ import { BiShuffle } from "react-icons/bi";
 // import tempImage2 from "/assets/haunted_shadows.png";
 // import tempImage3 from "/assets/happy_holidays.png";
 
+import CharacterAttributes from "./character-attributes";
+import CharacterSheet from "./character-sheet";
+
 export default function Page() {
+<<<<<<< Updated upstream
 
   const [currentStep, setCurrenntStep] = useState(1);
+=======
+  const [currentStep, setCurrentStep] = useState(1);
+>>>>>>> Stashed changes
 
   const [charName, setCharName] = useState("");
   const [charClass, setCharClass] = useState("");
@@ -21,8 +28,14 @@ export default function Page() {
   const [charSkin, setCharSkin] = useState("");
   const [charHair, setCharHair] = useState("");
 
+<<<<<<< Updated upstream
   const imagePaths = ["/assets/happy_holidays.png","/assets/haunted_shadows.png","/assets/idek_sunset.png"]
   const [charPhoto, setCharPhoto] = useState(imagePaths[0]);
+=======
+  const [charRace, setCharRace] = useState("");
+
+  const [charPhoto, setCharPhoto] = useState(tempImage1);
+>>>>>>> Stashed changes
   const [charDesc, setCharDesc] = useState("");
 
   const [charPersTraits, setCharPersTraits] = useState("");
@@ -30,7 +43,9 @@ export default function Page() {
   const [charBonds, setCharBonds] = useState("");
   const [charFlaws, setCharFlaws] = useState("");
 
-  const dndCharacterDesignData = {
+  //theres a lot of values
+  const dndCharacterValues = {
+    //design values
     name: charName,
     class: charClass,
     age: charAge,
@@ -39,12 +54,85 @@ export default function Page() {
     eyes: charEyes,
     skin: charSkin,
     hair: charHair,
+    race: charRace,
     photo: charPhoto,
     desc: charDesc,
     persTraits: charPersTraits,
     ideals: charIdeals,
     bonds: charBonds,
     flaws: charFlaws,
+    //ability scores
+    strength: 0,
+    strengthMod: 0,
+    dexterity: 0,
+    dexterityMod: 0,
+    constitution: 0,
+    constitutionMod: 0,
+    intelligence: 0,
+    intelligenceMod: 0,
+    wisdom: 0,
+    wisdomMod: 0,
+    charisma: 0,
+    charismaMod: 0,
+    //saving throws
+    strengthST: 0,
+    strengthSTProf: false,
+    dexterityST: 0,
+    dexteritySTProf: false,
+    constitutionST: 0,
+    constitutionSTProf: false,
+    intelligenceST: 0,
+    intelligenceSTProf: false,
+    wisdomST: 0,
+    wisdomSTProf: false,
+    charismaST: 0,
+    charismaSTProf: false,
+    //skills
+    acrobatics: 0,
+    acrobaticsProf: false,
+    animalHandling: 0,
+    animalHandlingProf: false,
+    arcana: 0,
+    arcanaProf: false,
+    athletics: 0,
+    athleticsProf: false,
+    deception: 0,
+    deceptionProf: false,
+    history: 0,
+    historyProf: false,
+    insight: 0,
+    insightProf: false,
+    intimidation: 0,
+    intimidationProf: false,
+    investigation: 0,
+    investigationProf: false,
+    medicine: 0,
+    medicineProf: false,
+    nature: 0,
+    natureProf: false,
+    perception: 0,
+    perceptionProf: false,
+    performance: 0,
+    performanceProf: false,
+    persuasion: 0,
+    persuasionProf: false,
+    religion: 0,
+    religionProf: false,
+    sleightOfHand: 0,
+    sleightOfHandProf: false,
+    stealth: 0,
+    stealthProf: false,
+    survival: 0,
+    survivalProf: false,
+    passiveWisdom: 0,
+    //combat values
+    armorClass: 0,
+    initiative: 0,
+    speed: 0,
+    hitPoints: 0,
+    //other values
+    inspiration: 0,
+    proficiencyBonus: 0,
   };
 
   const handleRandomCharName = () => {
@@ -111,126 +199,154 @@ export default function Page() {
   };
 
   //what this will do is send over the character data to the next page, aka the step 2 component named "character-data"
-  const handlePassOverCharacterInfo = () => {
-    if (currentStep === 1) {
-      //send the character data to the next page
-      <Link href="../character-data" className="hover:text-amber-400">Design a Character</Link>
-    }
+  const handleNextStep = () => {
+    console.log(currentStep);
+      if (currentStep === 1) {
+        setCurrentStep(2);
+        console.log(currentStep);
+      }
+      else if (currentStep === 2) {
+        setCurrentStep(3);
+        console.log(currentStep);
+      }
+      else if (currentStep === 3) {
+        setCurrentStep(4);
+        console.log(currentStep);
+      }
+  };
+  const handlePrevStep = () => {
+    console.log(currentStep);
+      if (currentStep === 4) {
+        setCurrentStep(3);
+        console.log(currentStep);
+      }
+      else if (currentStep === 3) {
+        setCurrentStep(2);
+        console.log(currentStep);
+      }
+      else if (currentStep === 2) {
+        setCurrentStep(1);
+        console.log(currentStep);
+      }
   };
 
-  return (
-    <main className="flex flex-col items-center bg-slate-400 min-h-screen">
-      <h1 className="text-black text-6xl m-2 mt-5 font-bold italic">-- Character Design --</h1>
-      <h2 className="text-black text-1xl italic text-center w-1/4">Begin making the design of your character. Make it truly yours, or randomize!</h2>
-      {/* character attributes */}
-      <div className="flex flex-row items-stretch">
-        {/* character name, class */}
-        <div className="flex flex-col items-stretch p-3 m-1 bg-slate-600 rounded">
-          {/* character name */}
-          <div className="flex flex-col items-stretch mb-1">
-            <input className="text-black p-1 rounded border-4 border-stone-400" type="text" placeholder="e.g. Idek the Confused" value={charName} onChange={(e) => setCharName(e.target.value)}/>
-            <div className="flex flex-row items-center justify-between pt-1 w-full">
-            <h2 className="font-bold">Character Name</h2>
-            <BiShuffle
-              className="ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
-              onClick={handleRandomCharName}
-            />
-            </div>
-          </div>
-          {/* class */}
-          <div className="flex flex-col items-stretch mt-1">
-            <select className="text-black p-1 rounded border-4 border-stone-400" id="char_class" value={charClass} onChange={(e) => setCharClass(e.target.value)}>
-              <option value="Barbarian">Barbarian</option>
-              <option value="Bard">Bard</option>
-              <option value="Cleric">Cleric</option>
-              <option value="Druid">Druid</option>
-              <option value="Fighter">Fighter</option>
-              <option value="Monk">Monk</option>
-              <option value="Paladin">Paladin</option>
-              <option value="Ranger">Ranger</option>
-              <option value="Rogue">Rogue</option>
-              <option value="Sorcerer">Sorcerer</option>
-              <option value="Warlock">Warlock</option>
-              <option value="Wizard">Wizard</option>
-            </select>
-            <div className="flex flex-row items-center justify-between pt-1 w-full">
-            <h2 className="font-bold">Class</h2>
-            <BiShuffle
-              className="ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
-              onClick={handleRandomCharClass}
-            />
-            </div>
-          </div>
-        </div>
-        {/* age, height, weight, eyes, skin, hair */}
-        <div className="flex flex-col items-start p-3 m-1 bg-slate-600 rounded">
-          {/* age, height, weight */}
-          <div className="flex flex-row items-start">
-            <div className="flex flex-col mb-1 mr-1">
-              <input className="text-black p-1 rounded border-4 border-stone-400" type="number" placeholder="Human Year" value={charAge} onChange={(e) => setCharAge(e.target.value)}/>
+  //step 1: character design
+  if (currentStep === 1) {
+    return (
+      <main className="flex flex-col items-center bg-slate-400 min-h-screen">
+        <h1 className="text-black text-6xl m-2 mt-5 font-bold italic">-- Character Design --</h1>
+        <h2 className="text-black text-1xl italic text-center w-1/4">Begin making the design of your character. Make it truly yours, or randomize!</h2>
+        {/* character attributes */}
+        <div className="flex flex-row items-stretch">
+          {/* character name, class */}
+          <div className="flex flex-col items-stretch p-3 m-1 bg-slate-600 rounded">
+            {/* character name */}
+            <div className="flex flex-col items-stretch mb-1">
+              <input className="text-black p-1 rounded border-4 border-stone-400" type="text" placeholder="e.g. Idek the Confused" value={charName} onChange={(e) => setCharName(e.target.value)}/>
               <div className="flex flex-row items-center justify-between pt-1 w-full">
-                <h2 className="font-bold">Age</h2>
-                <BiShuffle
-                  className="ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
-                  onClick={handleRandomCharAge}
-                />
+              <h2 className="font-bold">Character Name</h2>
+              <BiShuffle
+                className="ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
+                onClick={handleRandomCharName}
+              />
               </div>
             </div>
-            <div className="flex flex-col mb-1 mx-1">
-              <input className="text-black p-1 rounded border-4 border-stone-400" type="number" id="char_height" placeholder="Feet" value={charHeight} onChange={(e) => setCharHeight(e.target.value)}/>
+            {/* class */}
+            <div className="flex flex-col items-stretch mt-1">
+              <select className="text-black p-1 rounded border-4 border-stone-400" id="char_class" value={charClass} onChange={(e) => setCharClass(e.target.value)}>
+                <option value="Barbarian">Barbarian</option>
+                <option value="Bard">Bard</option>
+                <option value="Cleric">Cleric</option>
+                <option value="Druid">Druid</option>
+                <option value="Fighter">Fighter</option>
+                <option value="Monk">Monk</option>
+                <option value="Paladin">Paladin</option>
+                <option value="Ranger">Ranger</option>
+                <option value="Rogue">Rogue</option>
+                <option value="Sorcerer">Sorcerer</option>
+                <option value="Warlock">Warlock</option>
+                <option value="Wizard">Wizard</option>
+              </select>
               <div className="flex flex-row items-center justify-between pt-1 w-full">
-                <h2 className="font-bold">Height (ft)</h2>
-                <BiShuffle
-                  className="ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
-                  onClick={handleRandomCharHeight}
-                />
+              <h2 className="font-bold">Class</h2>
+              <BiShuffle
+                className="ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
+                onClick={handleRandomCharClass}
+              />
+              </div>
+            </div>
+          </div>
+          {/* age, height, weight, eyes, skin, hair */}
+          <div className="flex flex-col items-start p-3 m-1 bg-slate-600 rounded">
+            {/* age, height, weight */}
+            <div className="flex flex-row items-start">
+              <div className="flex flex-col mb-1 mr-1">
+                <input className="text-black p-1 rounded border-4 border-stone-400" type="number" placeholder="Human Year" value={charAge} onChange={(e) => setCharAge(e.target.value)}/>
+                <div className="flex flex-row items-center justify-between pt-1 w-full">
+                  <h2 className="font-bold">Age</h2>
+                  <BiShuffle
+                    className="ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
+                    onClick={handleRandomCharAge}
+                  />
                 </div>
-            </div>
-            <div className="flex flex-col mb-1 ml-1">
-              <input className="text-black p-1 rounded border-4 border-stone-400" type="number" id="char_weight" placeholder="Pounds" value={charWeight} onChange={(e) => setCharWeight(e.target.value)}/>
-              <div className="flex flex-row items-center justify-between pt-1 w-full">
-                <h2 className="font-bold">Weight (lbs)</h2>
-                <BiShuffle
-                  className="ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
-                  onClick={handleRandomCharWeight}
-                />
+              </div>
+              <div className="flex flex-col mb-1 mx-1">
+                <input className="text-black p-1 rounded border-4 border-stone-400" type="number" id="char_height" placeholder="Feet" value={charHeight} onChange={(e) => setCharHeight(e.target.value)}/>
+                <div className="flex flex-row items-center justify-between pt-1 w-full">
+                  <h2 className="font-bold">Height (ft)</h2>
+                  <BiShuffle
+                    className="ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
+                    onClick={handleRandomCharHeight}
+                  />
+                  </div>
+              </div>
+              <div className="flex flex-col mb-1 ml-1">
+                <input className="text-black p-1 rounded border-4 border-stone-400" type="number" id="char_weight" placeholder="Pounds" value={charWeight} onChange={(e) => setCharWeight(e.target.value)}/>
+                <div className="flex flex-row items-center justify-between pt-1 w-full">
+                  <h2 className="font-bold">Weight (lbs)</h2>
+                  <BiShuffle
+                    className="ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
+                    onClick={handleRandomCharWeight}
+                  />
+                </div>
               </div>
             </div>
-          </div>
-          {/* eyes, skin, hair */}
-          <div className="flex flex-row items-start">
-            <div className="flex flex-col mt-1 mr-1">
-              <input className="text-black p-1 rounded border-4 border-stone-400" type="text" id="charEyes" placeholder="e.g. Blue" value={charEyes} onChange={(e) => setCharEyes(e.target.value)}/>
-              <div className="flex flex-row items-center justify-between pt-1 w-full">
-                <h2 className="font-bold">Eyes</h2>
-                <BiShuffle
-                  className="ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
-                  onClick={handleRandomCharEyes}
-                />
+            {/* eyes, skin, hair */}
+            <div className="flex flex-row items-start">
+              <div className="flex flex-col mt-1 mr-1">
+                <input className="text-black p-1 rounded border-4 border-stone-400" type="text" id="charEyes" placeholder="e.g. Blue" value={charEyes} onChange={(e) => setCharEyes(e.target.value)}/>
+                <div className="flex flex-row items-center justify-between pt-1 w-full">
+                  <h2 className="font-bold">Eyes</h2>
+                  <BiShuffle
+                    className="ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
+                    onClick={handleRandomCharEyes}
+                  />
+                </div>
               </div>
-            </div>
-            <div className="flex flex-col mt-1 mx-1">
-              <input className="text-black p-1 rounded border-4 border-stone-400" type="text" id="charSkin" placeholder="e.g. White" value={charSkin} onChange={(e) => setCharSkin(e.target.value)}/>
-              <div className="flex flex-row items-center justify-between pt-1 w-full">
-                <h2 className="font-bold">Skin</h2>
-                <BiShuffle
-                  className="ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
-                  onClick={handleRandomCharSkin}
-                />
+              <div className="flex flex-col mt-1 mx-1">
+                <input className="text-black p-1 rounded border-4 border-stone-400" type="text" id="charSkin" placeholder="e.g. White" value={charSkin} onChange={(e) => setCharSkin(e.target.value)}/>
+                <div className="flex flex-row items-center justify-between pt-1 w-full">
+                  <h2 className="font-bold">Skin</h2>
+                  <BiShuffle
+                    className="ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
+                    onClick={handleRandomCharSkin}
+                  />
+                </div>
               </div>
-            </div>
-            <div className="flex flex-col mt-1 ml-1">
-              <input className="text-black p-1 rounded border-4 border-stone-400" type="text" id="charHair" placeholder="e.g. Blonde" value={charHair} onChange={(e) => setCharHair(e.target.value)}/>
-              <div className="flex flex-row items-center justify-between pt-1 w-full">
-                <h2 className="font-bold">Hair</h2>
-                <BiShuffle
-                  className="ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
-                  onClick={handleRandomCharHair}
-                />
+              <div className="flex flex-col mt-1 ml-1">
+                <input className="text-black p-1 rounded border-4 border-stone-400" type="text" id="charHair" placeholder="e.g. Blonde" value={charHair} onChange={(e) => setCharHair(e.target.value)}/>
+                <div className="flex flex-row items-center justify-between pt-1 w-full">
+                  <h2 className="font-bold">Hair</h2>
+                  <BiShuffle
+                    className="ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
+                    onClick={handleRandomCharHair}
+                  />
+                </div>
               </div>
             </div>
           </div>
         </div>
+<<<<<<< Updated upstream
       </div>
       {/* character appearance */}
       <div className="flex flex-row items-stretch">
@@ -241,82 +357,169 @@ export default function Page() {
             <img className="p-1 rounded w-10" src={charPhoto} alt={charClass + " Photo"} />
             <div className="flex flex-row items-center justify-between pt-1 w-full">
               <h2 className="font-bold">{charClass}</h2>
+=======
+        {/* character appearance */}
+        <div className="flex flex-row items-stretch">
+          {/* photo and race */}
+          <div className="flex flex-col justify-between p-3 m-1 bg-slate-600 rounded">
+            {/* photo */}
+            <div className="flex flex-col items-stretch mb-1">
+              <img className="p-1 rounded" src={charPhoto} alt={charClass + " Photo"} />
+              <div className="flex flex-row items-center justify-between pt-1 w-full">
+                <h2 className="font-bold">{charClass}</h2>
+              </div>
+            </div>
+            {/* desc */}
+            <div className="flex flex-col items-stretch mb-1">
+              <select className="text-black p-1 rounded border-4 border-stone-400" value={charRace} onChange={(e) => setCharRace(e.target.value)}>
+                <option value="Human">Human</option>
+                <option value="Elf">Elf</option>
+                <option value="Half-Elf">Half-Elf</option>
+                <option value="Dwarf">Dwarf</option>
+                <option value="Halfling">Halfling</option>
+                <option value="Gnome">Gnome</option>
+                <option value="Orc">Orc</option>
+                <option value="Half-Orc">Half-Orc</option>
+                <option value="Tiefling">Tiefling</option>
+                <option value="Dragonborn">Dragonborn</option>
+                <option value="Aasimar">Aasimar</option>
+                <option value="Firbolg">Firbolg</option>
+                <option value="Genasi">Genasi</option>
+                <option value="Goliath">Goliath</option>
+                <option value="Kenku">Kenku</option>
+                <option value="Lizardfolk">Lizardfolk</option>
+                <option value="Tabaxi">Tabaxi</option>
+                <option value="Triton">Triton</option>
+                <option value="Yuan-Ti Pureblood">Yuan-Ti Pureblood</option>
+                <option value="Bugbear">Bugbear</option>
+                <option value="Goblin">Goblin</option>
+                <option value="Hobgoblin">Hobgoblin</option>
+                <option value="Kobold">Kobold</option>
+                <option value="Aarakocra">Aarakocra</option>
+              </select>              
+              <h2 className="font-bold">Race</h2>
+>>>>>>> Stashed changes
             </div>
           </div>
-          {/* desc */}
-          <div className="flex flex-col items-stretch mb-1">
-            <textarea className="text-black p-1 rounded border-4 border-stone-400" type="text" id="char_name" placeholder="Description" value={charDesc} onChange={(e) => setCharDesc(e.target.value)}/>
-            <div className="flex flex-row items-center justify-between pt-1 w-full">
+          <div className="flex flex-col justify-between p-3 m-1 bg-slate-600 rounded">
+            {/* desc */}
+            <div className="flex flex-col items-stretch mb-1">
+              <textarea className="text-black p-1 rounded border-4 border-stone-400" type="text" placeholder="Description" value={charDesc} onChange={(e) => setCharDesc(e.target.value)}/>
               <h2 className="font-bold">Description</h2>
+<<<<<<< Updated upstream
               <button
                 className="font-bold italic ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
                 onClick={()=>{console.log("Lorum Ispum")}}
               >L</button>
+=======
+>>>>>>> Stashed changes
             </div>
           </div>
-        </div>
-        {/* personality traits, ideals, bonds, flaws */}
-        <div className="flex flex-col items-start p-3 m-1 bg-slate-600 rounded">
-          {/* personality traits, ideals*/}
-          <div className="flex flex-row items-start">
-            {/* personality traits */}
-            <div className="flex flex-col mb-1 mr-1">
-              <textarea className="text-black p-1 rounded border-4 border-stone-400" placeholder="e.g. Curious, Loyal, etc." value={charPersTraits} onChange={(e) => setCharPersTraits(e.target.value)}/>
-              <div className="flex flex-row items-center justify-between pt-1 w-full">
+          {/* personality traits, ideals, bonds, flaws */}
+          <div className="flex flex-col items-start p-3 m-1 bg-slate-600 rounded">
+            {/* personality traits, ideals*/}
+            <div className="flex flex-row items-start">
+              {/* personality traits */}
+              <div className="flex flex-col mb-1 mr-1">
+                <textarea className="text-black p-1 rounded border-4 border-stone-400" placeholder="e.g. Curious, Loyal, etc." value={charPersTraits} onChange={(e) => setCharPersTraits(e.target.value)}/>
                 <h2 className="font-bold">Personality Traits</h2>
+<<<<<<< Updated upstream
                 <button
                   className="font-bold italic ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
                   onClick={()=>{console.log("Lorum Ispum")}}
                 >L</button>
+=======
+>>>>>>> Stashed changes
               </div>
-            </div>
-            {/* ideals */}
-            <div className="flex flex-col mb-1 mx-1">
-              <textarea className="text-black p-1 rounded border-4 border-stone-400" placeholder="e.g. Freedom, Knowledge, etc." value={charIdeals} onChange={(e) => setCharIdeals(e.target.value)}/>
-              <div className="flex flex-row items-center justify-between pt-1 w-full">
+              {/* ideals */}
+              <div className="flex flex-col mb-1 mx-1">
+                <textarea className="text-black p-1 rounded border-4 border-stone-400" placeholder="e.g. Freedom, Knowledge, etc." value={charIdeals} onChange={(e) => setCharIdeals(e.target.value)}/>
                 <h2 className="font-bold">Ideals</h2>
+<<<<<<< Updated upstream
                 <button
                   className="font-bold italic ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
                   onClick={()=>{console.log("Lorum Ispum")}}
                 >L</button>
+=======
+>>>>>>> Stashed changes
               </div>
             </div>
-          </div>
-          {/* bonds, flaws */}
-          <div className="flex flex-row items-start">
-            {/* bonds */}
-            <div className="flex flex-col mt-1 mr-1">
-              <textarea className="text-black p-1 rounded border-4 border-stone-400" placeholder="e.g. Family Legacy, Artifact of Significance, etc." value={charBonds} onChange={(e) => setCharBonds(e.target.value)}/>
-              <div className="flex flex-row items-center justify-between pt-1 w-full">
+            {/* bonds, flaws */}
+            <div className="flex flex-row items-start">
+              {/* bonds */}
+              <div className="flex flex-col mt-1 mr-1">
+                <textarea className="text-black p-1 rounded border-4 border-stone-400" placeholder="e.g. Family Legacy, Artifact of Significance, etc." value={charBonds} onChange={(e) => setCharBonds(e.target.value)}/>
                 <h2 className="font-bold">Bonds</h2>
+<<<<<<< Updated upstream
                 <button
                   className="font-bold italic ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
                   onClick={()=>{console.log("Lorum Ispum")}}
                 >L</button>
+=======
+>>>>>>> Stashed changes
               </div>
-            </div>
-            {/* flaws */}
-            <div className="flex flex-col mt-1 mx-1">
-              <textarea className="text-black p-1 rounded border-4 border-stone-400" placeholder="e.g. Impulsive, Overconfident, etc." value={charFlaws} onChange={(e) => setCharFlaws(e.target.value)}/>
-              <div className="flex flex-row items-center justify-between pt-1 w-full">
+              {/* flaws */}
+              <div className="flex flex-col mt-1 mx-1">
+                <textarea className="text-black p-1 rounded border-4 border-stone-400" placeholder="e.g. Impulsive, Overconfident, etc." value={charFlaws} onChange={(e) => setCharFlaws(e.target.value)}/>
                 <h2 className="font-bold">Flaws</h2>
+<<<<<<< Updated upstream
                 <button
                   className="font-bold italic ml-2 bg-blue-500 h-7 w-7 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
                   onClick={()=>{console.log("Lorum Ispum")}}
                 >L</button>
+=======
+>>>>>>> Stashed changes
               </div>
             </div>
           </div>
         </div>
-      </div>
-      {/* save/next page button */}
-      <br/>
-      <Link
-        href="../character-data"
-        className="flex items-center justify-center bg-blue-500 h-16 w-32 text-3xl font-bold rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
-        onClick={handlePassOverCharacterInfo}>
-          Next
-      </Link>
-    </main>
-  );
+        {/* next page button */}
+        <br/>
+        <button
+          href="../character-data"
+          className="flex items-center justify-center bg-blue-500 h-16 w-32 text-3xl font-bold rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
+          onClick={handleNextStep}>
+            Next
+        </button>
+      </main>
+    );
+  }
+  else if (currentStep === 2) {
+    return (
+      <main className="flex flex-col items-center justify-start bg-slate-400 min-h-screen">
+        <CharacterAttributes dndCharacterValues={dndCharacterValues} />
+        <div className="flex flex-row items-center">
+          <button
+            className="flex items-center justify-center m-3 bg-blue-500 h-16 w-48 text-3xl font-bold rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
+            onClick={handlePrevStep}>
+              Previous
+          </button>
+          <button
+            className="flex items-center justify-center m-3 bg-blue-500 h-16 w-32 text-3xl font-bold rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
+            onClick={handleNextStep}>
+              Next
+          </button>
+        </div>
+      </main>  
+    );
+  }
+  else if (currentStep === 3) {
+    return (
+      <main className="flex flex-col items-center justify-start bg-slate-400 min-h-screen">
+        <CharacterSheet dndCharacterValues={dndCharacterValues} />
+        <div className="flex flex-row items-center">
+          <button
+            className="flex items-center justify-center m-3 bg-blue-500 h-16 w-48 text-3xl font-bold rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
+            onClick={handlePrevStep}>
+              Previous
+          </button>
+          <button
+            className="flex items-center justify-center m-3 bg-blue-500 h-16 w-32 text-3xl font-bold rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
+            onClick={handleNextStep}>
+              Next
+          </button>
+        </div>
+      </main>
+    );
+  }
 }
