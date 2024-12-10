@@ -1,4 +1,5 @@
 import React from 'react';
+import { BiShuffle } from 'react-icons/bi';
 
 function RandomStat() {
   // Function to roll stats (4d6 drop the lowest)
@@ -26,9 +27,10 @@ const RandomStats = ({ onStatsRandomized }) => {
 
   return (
     <div>
-      <button onClick={randomizeStats} >
-        Randomize Stats
-      </button>
+      <BiShuffle
+        className="mt-2 text-white bg-blue-500 h-10 w-10 rounded border-4 border-blue-500 hover:bg-blue-300 hover:border-blue-300"
+        onClick={randomizeStats}
+      />
     </div>
   );
 };

@@ -336,9 +336,8 @@ export default function Page() {
           <div className="flex flex-col justify-between p-3 m-1 bg-slate-600 rounded">
             {/* photo */}
             <div className="flex flex-col items-stretch mb-1">
-              <img className="p-1 rounded text-white" src={charPhoto} alt={charRace + " Photo"} />
+              <img className="p-1 rounded-3xl h-40" src={charPhoto} alt={charRace + " Photo"} />
               <div className="centered-flex-row justify-between pt-1 w-full">
-                <h2 className="font-bold text-white">{charRace}</h2>
               </div>
             </div>
             {/* desc */}

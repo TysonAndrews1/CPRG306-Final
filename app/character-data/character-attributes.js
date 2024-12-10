@@ -249,7 +249,7 @@ setCharArmorClass(10+abilityScores.DEX.modifier)
         </div>
         <div className="flex flex-row rounded p-3 m-1">
           {/* Ability Scores */}
-          <div className="container">
+          <div className="flex flex-col container items-center">
             {Object.keys(abilityScores).map((abilityKey) => {
               const ability = abilityScores[abilityKey];
               return (
@@ -262,31 +262,33 @@ setCharArmorClass(10+abilityScores.DEX.modifier)
                 />
               );
             })}
-            <RandomStats onStatsRandomized={handleStatsRandomized} />
             <div className="flex flex-col justify-between bg-slate-600 rounded p-3 m-1 items-center ">
-                <p className="text-black p-1 m-1 rounded text-end w-12 border-4 border-stone-400 bg-white">{abilityScores.WIS.score}</p>
-                <h2 className="text-white text-1xl font-bold italic">Passive Wisdom</h2>
-              </div>
+              <p className="text-black p-1 m-1 rounded text-end w-12 border-4 border-stone-400 bg-white">{abilityScores.WIS.score}</p>
+              <h2 className="text-white text-1xl font-bold italic">Passive Wisdom</h2>
+            </div>
           </div>
 
           {/* Skills */}
           <div className="container">
             <h2 className="text-white text-1xl text-center font-bold italic">Skills</h2>
             {Object.keys(skills).map((ability) => (
-        <div key={ability}>
-          {skills[ability].map((skill) => (
-            <SkillCheckbox
-              key={skill.name}
-              skillName={skill.name}
-              abilityModifier={abilityScores[ability].modifier}
-              proficiency={skill.proficiency}
-              proficiencyValue={charProficiencyBonus}
-              onChange={() => handleProficiencyToggle(ability, skill.name)}  // Toggle proficiency on checkbox change
-            />
-          ))}
-        </div>
-      ))}
-          </div>
+              <div key={ability}>
+                {skills[ability].map((skill) => (
+                  <SkillCheckbox
+                    key={skill.name}
+                    skillName={skill.name}
+                    abilityModifier={abilityScores[ability].modifier}
+                    proficiency={skill.proficiency}
+                    proficiencyValue={charProficiencyBonus}
+                    onChange={() => handleProficiencyToggle(ability, skill.name)}  // Toggle proficiency on checkbox change
+                  />
+                ))}
+              </div>
+            ))}
+              <div className="flex flex-col justify-between items-center">
+                <RandomStats onStatsRandomized={handleStatsRandomized} />
+              </div>
+            </div>
           {/* Other Stuff and Saving Throws */}
           <div className="flex flex-col items-stretch">
             <div className="flex flex-row  bg-slate-600 rounded p-3 m-1 items-center">
