@@ -7,7 +7,7 @@ export default function Page() {
       <p>text</p>
       <Link href="character-data" className="hover:text-amber-400">Design a Character</Link>
       <div>
-      <Link href={"/tyson-test"}>Testing</Link>
+      <Link href={"/components"}>Testing</Link>
       </div>
     </main>
   );

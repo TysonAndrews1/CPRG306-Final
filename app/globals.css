@@ -7,15 +7,45 @@
   --foreground: #171717;
 }
 
-/* @media (prefers-color-scheme: dark) {
+/* Your custom styles */
+@layer utilities {
+  .input-styles {
+    @apply text-black h-7 text-xs p-1 m-1 rounded text-center w-12 bg-white border-4 border-stone-400;
+  }
+  .checkbox-styles {
+    @apply text-black h-4 rounded-full text-end w-4 p-1;
+  }
+  .centered-flex-row {
+    @apply flex flex-row items-center;
+  }
+  .centered-flex-column {
+    @apply flex flex-col items-center;
+  }
+  .label-styles {
+    @apply text-white text-sm italic;
+  }
+  .large-box {
+    @apply text-black p-1 m-1 rounded text-end w-12 border-4 border-stone-400;
+  }
+  .saving-throw {
+    @apply text-black text-sm p-1 m-1 rounded text-end w-10 border-4 border-stone-400;
+  }
+  .container {
+    @apply flex flex-col items-stretch bg-slate-600 rounded p-2 m-1;
+  }
+  .select-styles {
+    @apply text-black p-1 rounded border-4 border-stone-400;
+  }
+}
+@media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-} */
+}
 
-/* body {
+body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
-} */
+}

@@ -14,21 +14,11 @@ async function fetchAPIData(DndClass) {
 
 export default function ClassBased({ DndClass }) {
   const [ClassData, setClassData] = useState(null); // State to store class data
-  const [options, setOptions] = useState([]);
-  const [Level, setLevel] = useState(""); // The level selected by the user
   const [HitDice, setHitDice] = useState(""); // The hit dice calculated based on the level and class
   const [profBonus, setProfBonus] =useState("")
 
-  const LevelCap = 20;
 
-  let LevelElements = [];
-  for (let index = 1; index <= LevelCap; index++) {
-    LevelElements.push(
-      <option key={index} value={index}>
-        {index}
-      </option>
-    );
-  }
+
 
   // Load data from API when the component mounts or path changes
   useEffect(() => {
@@ -70,22 +60,11 @@ export default function ClassBased({ DndClass }) {
   }
 
   // Handle the selection change
-  const handleLevelChange = (event) => {
-    setLevel(event.target.value);
-  };
 
   return (
     <div>
       <h2>Select a {DndClass}</h2>
-      <select value={Level} onChange={handleLevelChange}>
-        {/* Placeholder option */}
-        <option value="" disabled>
-          -- Select a Level --
-        </option>
 
-        {/* Map through the options */}
-        {LevelElements}
-      </select>
 
       <p>You selected level: {Level}</p>
       <p>Hit die: {HitDice}</p>

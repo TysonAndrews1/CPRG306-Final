@@ -6,11 +6,10 @@ import { useState, useEffect } from "react";
 async function fetchAPIData(path) {
   const response = await fetch(`https://www.dnd5eapi.co/api/${path}`);
   const data = await response.json();
-  console.log(`Fetched data for path: ${path}`, data);
   return data.results || data; // API returns results in an array of objects, or the whole data in some cases
 }
 
-export default function SelectApi({ path }) {
+export default function SelectApi({ path, onSelectOption }) {
   const [options, setOptions] = useState([]);
   const [selectedOption, setSelectedOption] = useState("");
 
@@ -30,13 +29,16 @@ export default function SelectApi({ path }) {
 
   // Handle the selection change
   const handleSelectChange = (event) => {
-    setSelectedOption(event.target.value);
+    const newSelectedOption = event.target.value;
+    setSelectedOption(newSelectedOption);
+    if (onSelectOption) {
+      onSelectOption(newSelectedOption); // Send the selected option back to the parent component
+    }
   };
 
   return (
     <div>
-      <h2>Select a {path}</h2>
-      <select value={selectedOption} onChange={handleSelectChange}>
+      <select value={selectedOption} onChange={handleSelectChange} className="select-styles">
         {/* Placeholder option */}
         <option value="" disabled>
           -- Select a {path} --
@@ -50,7 +52,6 @@ export default function SelectApi({ path }) {
         ))}
       </select>
 
-      <p>You selected: {selectedOption}</p>
     </div>
   );
 }
