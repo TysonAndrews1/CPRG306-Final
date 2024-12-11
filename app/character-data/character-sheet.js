@@ -80,6 +80,10 @@ export default function CharacterSheet({ dndCharacterValues }) {
                                 <h2 className="font-bold text-white">Proficiency Bonus</h2>
                                 <p className="text-black p-1 rounded border-4 bg-white border-stone-400">{dndCharacterValues.proficiencyBonus}</p>
                             </div>
+                            <div className="flex flex-col items-stretch">
+                                <h2 className="font-bold text-white">Level</h2>
+                                <p className="text-black p-1 rounded border-4 bg-white border-stone-400">{dndCharacterValues.level}</p>
+                            </div>
                         </div>
                         {/* combat */}
                         <div className="flex flex-row items-stretch justify-evenly bg-slate-600 rounded p-2 m-1">
@@ -110,14 +114,14 @@ export default function CharacterSheet({ dndCharacterValues }) {
                                 <div className="centered-flex-column">
                                     <h2 className="text-white text-1xl font-bold italic">Strength</h2>
                                     <div className="centered-flex-row">
-                                        <p className="text-white text-center">{handleProficiency(dndCharacterValues.strengthProfST)}</p>
+                                        <p className="text-white text-center">{handleProficiency(dndCharacterValues.strengthSTProf)}</p>
                                         <p className="text-black p-1 m-1 rounded text-center w-12 border-4 bg-white border-stone-400">{dndCharacterValues.strengthST}</p>
                                     </div>
                                 </div>
                                 <div className="centered-flex-column">
                                     <h2 className="text-white text-1xl font-bold italic">Dexterity</h2>
                                     <div className="centered-flex-row">
-                                        <p className="text-white text-center">{handleProficiency(dndCharacterValues.dexterityProfST)}</p>
+                                        <p className="text-white text-center">{handleProficiency(dndCharacterValues.dexteritySTProf)}</p>
                                         <p className="text-black p-1 m-1 rounded text-center w-12 border-4 bg-white border-stone-400">{dndCharacterValues.dexterityST}</p>
                                     </div>
                                 </div>
@@ -126,14 +130,14 @@ export default function CharacterSheet({ dndCharacterValues }) {
                                 <div className="centered-flex-column">
                                     <h2 className="text-white text-1xl font-bold italic">Constitution</h2>
                                     <div className="centered-flex-row">
-                                        <p className="text-white text-center">{handleProficiency(dndCharacterValues.constitutionProfST)}</p>
+                                        <p className="text-white text-center">{handleProficiency(dndCharacterValues.constitutionSTProf)}</p>
                                         <p className="text-black p-1 m-1 rounded text-center w-12 border-4 bg-white border-stone-400">{dndCharacterValues.constitutionST}</p>
                                     </div>
                                 </div>
                                 <div className="centered-flex-column">
                                     <h2 className="text-white text-1xl font-bold italic">Intelligence</h2>
                                     <div className="centered-flex-row">
-                                        <p className="text-white text-center">{handleProficiency(dndCharacterValues.intelligenceProfST)}</p>
+                                        <p className="text-white text-center">{handleProficiency(dndCharacterValues.intelligenceSTProf)}</p>
                                         <p className="text-black p-1 m-1 rounded text-center w-12 border-4 bg-white border-stone-400">{dndCharacterValues.intelligenceST}</p>
                                     </div>
                                 </div>
@@ -142,14 +146,14 @@ export default function CharacterSheet({ dndCharacterValues }) {
                                 <div className="centered-flex-column">
                                     <h2 className="text-white text-1xl font-bold italic">Wisdom</h2>
                                     <div className="centered-flex-row">
-                                        <p className="text-white text-center">{handleProficiency(dndCharacterValues.wisdomProfST)}</p>
+                                        <p className="text-white text-center">{handleProficiency(dndCharacterValues.wisdomSTProf)}</p>
                                         <p className="text-black p-1 m-1 rounded text-center w-12 border-4 bg-white border-stone-400">{dndCharacterValues.wisdomST}</p>
                                     </div>
                                 </div>
                                 <div className="centered-flex-column">
                                     <h2 className="text-white text-1xl font-bold italic">Charisma</h2>
                                     <div className="centered-flex-row">
-                                        <p className="text-white text-center">{handleProficiency(dndCharacterValues.charismaProfST)}</p>
+                                        <p className="text-white text-center">{handleProficiency(dndCharacterValues.charismaSTProf)}</p>
                                         <p className="text-black p-1 m-1 rounded text-center w-12 border-4 bg-white border-stone-400">{dndCharacterValues.charismaST}</p>
                                     </div>
                                 </div>

@@ -8,16 +8,14 @@ import HealthCalc from "../components/Health";
 import { useFetchData } from "../components/FetchData";
 
 
-
-
-
-export default function CharacterAttributes({ dndCharacterValues }) {
+export default function CharacterAttributes({ dndCharacterValues,updateCharacterValues  }) {
   const classPath = `classes/${dndCharacterValues.class.toLowerCase()}`;
   const racePath = `races/${dndCharacterValues.race.toLowerCase()}`;
   const { fetchData: classData, loading: classLoading, error: classError } = useFetchData(classPath);
   const { fetchData: raceData, loading: raceLoading, error: raceError } = useFetchData(racePath);
   const [combinedData, setCombinedData] = useState(null);
-  const [hitDie, setHitDie] = useState(null)
+  const [hitDie, setHitDie] = useState(null);
+
   useEffect(() => {
     if (!classLoading && !raceLoading && classData && raceData) {
       // Only set combined data if both class and race data are fetched
@@ -25,70 +23,65 @@ export default function CharacterAttributes({ dndCharacterValues }) {
         class: classData,
         race: raceData,
       });
-      
-      
     }
   }, [classData, raceData, classLoading, raceLoading]);
 
-
-
-  // Ability scores
+  // Initialize Ability Scores from dndCharacterValues
   const [abilityScores, setAbilityScores] = useState({
-    STR: { score: 10, modifier: 0 },
-    DEX: { score: 10, modifier: 0 },
-    CON: { score: 10, modifier: 0 },
-    INT: { score: 10, modifier: 0 },
-    WIS: { score: 10, modifier: 0 },
-    CHA: { score: 10, modifier: 0 },
+    STR: { score: dndCharacterValues.strength, modifier: dndCharacterValues.strengthMod },
+    DEX: { score: dndCharacterValues.dexterity, modifier: dndCharacterValues.dexterityMod },
+    CON: { score: dndCharacterValues.constitution, modifier: dndCharacterValues.constitutionMod },
+    INT: { score: dndCharacterValues.intelligence, modifier: dndCharacterValues.intelligenceMod },
+    WIS: { score: dndCharacterValues.wisdom, modifier: dndCharacterValues.wisdomMod },
+    CHA: { score: dndCharacterValues.charisma, modifier: dndCharacterValues.charismaMod },
   });
 
-
-  // Skills (with proficiency flag)
+  // Initialize Skills (with proficiency flag) from dndCharacterValues (if applicable)
   const [skills, setSkills] = useState({
-    STR: [{ name: "Athletics", proficiency: false }],
+    STR: [{ name: "Athletics", proficiency: dndCharacterValues.athleticsProf }],
     DEX: [
-      { name: "Acrobatics", proficiency: false },
-      { name: "Sleight of Hand", proficiency: false },
-      { name: "Stealth", proficiency: false },
+      { name: "Acrobatics", proficiency: dndCharacterValues.acrobaticsProf },
+      { name: "Sleight of Hand", proficiency: dndCharacterValues.sleightOfHandProf },
+      { name: "Stealth", proficiency: dndCharacterValues.stealthProf },
     ],
-    CON: [],
+    CON: [], // Add any CON-based skills if needed
     INT: [
-      { name: "Arcana", proficiency: false },
-      { name: "History", proficiency: false },
-      { name: "Investigation", proficiency: false },
-      { name: "Nature", proficiency: false },
-      { name: "Religion", proficiency: false },
+      { name: "Arcana", proficiency: dndCharacterValues.arcanaProf },
+      { name: "History", proficiency: dndCharacterValues.historyProf },
+      { name: "Investigation", proficiency: dndCharacterValues.investigationProf },
+      { name: "Nature", proficiency: dndCharacterValues.natureProf },
+      { name: "Religion", proficiency: dndCharacterValues.religionProf },
     ],
     WIS: [
-      { name: "Animal Handling", proficiency: false },
-      { name: "Insight", proficiency: false },
-      { name: "Medicine", proficiency: false },
-      { name: "Perception", proficiency: false },
-      { name: "Survival", proficiency: false },
+      { name: "Animal Handling", proficiency: dndCharacterValues.animalHandlingProf },
+      { name: "Insight", proficiency: dndCharacterValues.insightProf },
+      { name: "Medicine", proficiency: dndCharacterValues.medicineProf },
+      { name: "Perception", proficiency: dndCharacterValues.perceptionProf },
+      { name: "Survival", proficiency: dndCharacterValues.survivalProf },
     ],
     CHA: [
-      { name: "Deception", proficiency: false },
-      { name: "Intimidation", proficiency: false },
-      { name: "Performance", proficiency: false },
-      { name: "Persuasion", proficiency: false },
+      { name: "Deception", proficiency: dndCharacterValues.deceptionProf },
+      { name: "Intimidation", proficiency: dndCharacterValues.intimidationProf },
+      { name: "Performance", proficiency: dndCharacterValues.performanceProf },
+      { name: "Persuasion", proficiency: dndCharacterValues.persuasionProf },
     ],
   });
 
-  // Saving Throws (with proficiency flag)
+  // Initialize Saving Throws (with proficiency flag) from dndCharacterValues (if applicable)
   const [savingThrows, setSavingThrows] = useState({
-    STR: { savingThrow: 0, isProficient: false },
-    DEX: { savingThrow: 0, isProficient: false },
-    CON: { savingThrow: 0, isProficient: false },
-    INT: { savingThrow: 0, isProficient: false },
-    WIS: { savingThrow: 0, isProficient: false },
-    CHA: { savingThrow: 0, isProficient: false },
+    STR: { savingThrow: dndCharacterValues.strengthST, isProficient: dndCharacterValues.strengthSTProf },
+    DEX: { savingThrow: dndCharacterValues.dexterityST, isProficient: dndCharacterValues.dexteritySTProf },
+    CON: { savingThrow: dndCharacterValues.constitutionST, isProficient: dndCharacterValues.constitutionSTProf },
+    INT: { savingThrow: dndCharacterValues.intelligenceST, isProficient: dndCharacterValues.intelligenceSTProf },
+    WIS: { savingThrow: dndCharacterValues.wisdomST, isProficient: dndCharacterValues.wisdomSTProf },
+    CHA: { savingThrow: dndCharacterValues.charismaST, isProficient: dndCharacterValues.charismaSTProf },
   });
 
-  // Combat Stats
-  const [charArmorClass, setCharArmorClass] = useState(0);
-  const [charInitiative, setCharInitiative] = useState(0);
-  const [charSpeed, setCharSpeed] = useState(0);
-  const [charHitPoints, setCharHitPoints] = useState(1);
+  // Initialize Combat Stats from dndCharacterValues
+  const [charArmorClass, setCharArmorClass] = useState(dndCharacterValues.armorClass);
+  const [charInitiative, setCharInitiative] = useState(dndCharacterValues.initiative);
+  const [charSpeed, setCharSpeed] = useState(dndCharacterValues.speed);
+  const [charHitPoints, setCharHitPoints] = useState(dndCharacterValues.hitPoints);
   
   useEffect(() => {
     if (combinedData && combinedData.class) {
@@ -205,7 +198,7 @@ export default function CharacterAttributes({ dndCharacterValues }) {
   };
 
 
-  const [Level, setLevel] = useState(1)
+  const [Level, setLevel] = useState(dndCharacterValues.level)
   const LevelCap =20
   let LevelElements = [];
   for (let index = 1; index <= LevelCap; index++) {
@@ -231,6 +224,112 @@ setCharInitiative(abilityScores.DEX.modifier)
 setCharArmorClass(10+abilityScores.DEX.modifier)
 
 },[abilityScores])
+
+useEffect(()=>{
+  sendUpdatesToParent()
+},[abilityScores,skills,savingThrows,Level])
+
+
+const getSkillProficiency = (category, skillName) => {
+  const skill = skills[category]?.find(skill => skill.name === skillName);
+  return skill ? skill.proficiency : false;
+};
+
+const sendUpdatesToParent = () => {
+  updateCharacterValues ({
+    strength: abilityScores.STR.score,
+    strengthMod: abilityScores.STR.modifier,
+    dexterity: abilityScores.DEX.score,
+    dexterityMod: abilityScores.DEX.modifier,
+    constitution: abilityScores.CON.score,
+    constitutionMod: abilityScores.CON.modifier,
+    intelligence: abilityScores.INT.score,
+    intelligenceMod: abilityScores.INT.modifier,
+    wisdom: abilityScores.WIS.score,
+    wisdomMod: abilityScores.WIS.modifier,
+    charisma: abilityScores.CHA.score,
+    charismaMod: abilityScores.CHA.modifier,
+
+
+    // skills (I know this is a stupid way to do it but I couldnt be bothered to type them all properly and the AI was giving stupid answers )
+    acrobatics: abilityScores.DEX.modifier + (getSkillProficiency('DEX', 'Acrobatics') ? charProficiencyBonus : 0),
+    acrobaticsProf: getSkillProficiency('DEX', 'Acrobatics'),
+
+    animalHandling: abilityScores.WIS.modifier + (getSkillProficiency('WIS', 'Animal Handling') ? charProficiencyBonus : 0),
+    animalHandlingProf: getSkillProficiency('WIS', 'Animal Handling'),
+
+    arcana: abilityScores.INT.modifier + (getSkillProficiency('INT', 'Arcana') ? charProficiencyBonus : 0),
+    arcanaProf: getSkillProficiency('INT', 'Arcana'),
+
+    athletics: abilityScores.STR.modifier + (getSkillProficiency('STR', 'Athletics') ? charProficiencyBonus : 0),
+    athleticsProf: getSkillProficiency('STR', 'Athletics'),
+
+    deception: abilityScores.CHA.modifier + (getSkillProficiency('CHA', 'Deception')?charProficiencyBonus:0),
+    deceptionProf: getSkillProficiency('CHA', 'Deception'),
+
+    history: abilityScores.INT.modifier + (getSkillProficiency('INT', 'History') ? charProficiencyBonus : 0),
+    historyProf: getSkillProficiency('INT', 'History'),
+
+    insight: abilityScores.WIS.modifier + (getSkillProficiency('WIS', 'Insight') ? charProficiencyBonus : 0),
+    insightProf: getSkillProficiency('WIS', 'Insight'),
+
+    intimidation: abilityScores.CHA.modifier + (getSkillProficiency('CHA', 'Intimidation') ? charProficiencyBonus : 0),
+    intimidationProf: getSkillProficiency('CHA', 'Intimidation'),
+
+    investigation: abilityScores.INT.modifier + (getSkillProficiency('INT', 'Investigation') ? charProficiencyBonus : 0),
+    investigationProf: getSkillProficiency('INT', 'Investigation'),
+
+    medicine: abilityScores.WIS.modifier + (getSkillProficiency('WIS', 'Medicine') ? charProficiencyBonus : 0),
+    medicineProf: getSkillProficiency('WIS', 'Medicine'),
+
+    nature: abilityScores.INT.modifier + (getSkillProficiency('INT', 'Nature') ? charProficiencyBonus : 0),
+    natureProf: getSkillProficiency('INT', 'Nature'),
+
+    perception: abilityScores.WIS.modifier + (getSkillProficiency('WIS', 'Perception') ? charProficiencyBonus : 0),
+    perceptionProf: getSkillProficiency('WIS', 'Perception'),
+
+    performance: abilityScores.CHA.modifier + (getSkillProficiency('CHA', 'Performance') ? charProficiencyBonus : 0),
+    performanceProf: getSkillProficiency('CHA', 'Performance'),
+
+    persuasion: abilityScores.CHA.modifier + (getSkillProficiency('CHA', 'Persuasion') ? charProficiencyBonus : 0),
+    persuasionProf: getSkillProficiency('CHA', 'Persuasion'),
+
+    religion: abilityScores.INT.modifier + (getSkillProficiency('INT', 'Religion') ? charProficiencyBonus : 0),
+    religionProf: getSkillProficiency('INT', 'Religion'),
+
+    sleightOfHand: abilityScores.DEX.modifier + (getSkillProficiency('DEX', 'Sleight of Hand') ? charProficiencyBonus : 0),
+    sleightOfHandProf: getSkillProficiency('DEX', 'Sleight of Hand'),
+
+    stealth: abilityScores.DEX.modifier + (getSkillProficiency('DEX', 'Stealth') ? charProficiencyBonus : 0),
+    stealthProf: getSkillProficiency('DEX', 'Stealth'),
+
+    survival: abilityScores.WIS.modifier + (getSkillProficiency('WIS', 'Survival') ? charProficiencyBonus : 0),
+    survivalProf: getSkillProficiency('WIS', 'Survival'),
+    
+
+    //saving Throws
+    strengthST: savingThrows.STR.savingThrow,
+    strengthSTProf: savingThrows.STR.isProficient,
+    dexterityST: savingThrows.DEX.savingThrow,
+    dexteritySTProf:    savingThrows.DEX.isProficient,
+    constitutionST: savingThrows.CON.savingThrow,
+    constitutionSTProf:      savingThrows.CON.isProficient,
+    intelligenceST: savingThrows.INT.savingThrow,
+    intelligenceSTProf:      savingThrows.INT.isProficient,
+    wisdomST: savingThrows.WIS.savingThrow,
+    wisdomSTProf: savingThrows.WIS.isProficient,
+    charismaST: savingThrows.CHA.savingThrow,
+    charismaSTProf:    savingThrows.CHA.isProficient,
+    //other
+    armorClass: charArmorClass,
+    initiative: charInitiative,
+    speed: charSpeed,
+    hitPoints: charHitPoints,
+    passiveWisdom: abilityScores.WIS.score,
+    proficiencyBonus: charProficiencyBonus,
+    level: Level
+  });
+}
 
 
   return (
@@ -297,8 +396,6 @@ setCharArmorClass(10+abilityScores.DEX.modifier)
         <option value="" disabled>
           -- Select a Level --
         </option>
-
-        {/* Map through the options */}
         {LevelElements}
       </select>
                 <h2 className="text-white text-1xl font-bold italic">Level</h2>
